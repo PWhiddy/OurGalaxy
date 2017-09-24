@@ -13,31 +13,32 @@
 
   var scene = new THREE.Scene();
 
+// A semi-transparent plane to make the background fade
   var plane = new THREE.Mesh( 
     new THREE.PlaneGeometry( window.innerWidth, 
                              window.innerHeight, 8,8 ), 
     new THREE.MeshBasicMaterial( { 
-      transparent: true, 
+      transparent: true,
       opacity: 0.02,
       color: 0x000000 } ) );
   plane.position.z = -500;
   scene.add(plane);
 
-  var geometry = new THREE.SphereGeometry( 5, 5, 5 );
+  var geometry = new THREE.SphereGeometry( 4, 4, 4 );
   var material = new THREE.MeshNormalMaterial({depthTest:false});
   
   var partMeshes = new THREE.Group();
   scene.add( partMeshes );
 
   var camera = new THREE.OrthographicCamera( 
-    window.innerWidth / - 2, 
-    window.innerWidth / 2, 
+    window.innerWidth / - 2,
+    window.innerWidth / 2,
     window.innerHeight / 2,
-    window.innerHeight / - 2, 
+    window.innerHeight / - 2,
     1, 1000 );
   camera.position.z = 100;
 
-  var renderer = new THREE.WebGLRenderer( 
+  var renderer = new THREE.WebGLRenderer(
     { antialias: true, preserveDrawingBuffer: true } );
   renderer.autoClear = false;
   renderer.setSize( window.innerWidth, window.innerHeight );

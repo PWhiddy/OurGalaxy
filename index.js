@@ -8,14 +8,15 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 
-const speedFactor = 0.0002;
-const pMass = 0.0005;
+const speedFactor = 0.0003;
+const pMass = 0.00002;
+const simSpeed = 20;
 var t = Date.now();
 var lastPhysicsTick = 0.0;
 var lastRenderUpdate = 0.0;
 // Physics and rendering periods
-var minPhysicsDelay = (1/60)*1000;
-var minRenderDelay = (1/10)*1000;
+var minPhysicsDelay = (1/4)*1000;
+var minRenderDelay = (1/4)*1000;
 var parts = [];
 for (let i=0; i<0; i++) {
 	parts.push(new Particle(
@@ -58,7 +59,7 @@ function physicsTick() {
 			b.zv += f*dz*a.m;
 		}
 	}
-	for (let p of parts) p.move(minPhysicsDelay);
+	for (let p of parts) p.move(simSpeed);
 }
 
 function runSim() {
@@ -87,7 +88,6 @@ function onConnection(socket) {
   // modify this to add particle
   socket.on('addParticle', data => createParticle(data) );
   //socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
-
 
   setInterval(runSim, 15);
 

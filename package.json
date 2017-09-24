@@ -1,6 +1,6 @@
 {
   "name": "OurGalaxy",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Collaborative Galaxy Builder",
   "main": "index.js",
   "keywords": [
